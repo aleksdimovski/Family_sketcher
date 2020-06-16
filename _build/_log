@@ -1,0 +1,120 @@
+### Starting build.
+# Target: main/Main.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:main/Main.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules main/Main.ml > main/Main.ml.depends # cached
+# Target: frontend/AbstractSyntax.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:frontend/AbstractSyntax.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules frontend/AbstractSyntax.ml > frontend/AbstractSyntax.ml.depends # cached
+# Target: frontend/IntermediateSyntax.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:frontend/IntermediateSyntax.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules frontend/IntermediateSyntax.ml > frontend/IntermediateSyntax.ml.depends # cached
+# Target: frontend/IntermediateSyntax.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:frontend/IntermediateSyntax.cmo, file:frontend/IntermediateSyntax.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/IntermediateSyntax.cmo frontend/IntermediateSyntax.ml # cached
+# Target: frontend/AbstractSyntax.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:frontend/AbstractSyntax.cmo, file:frontend/AbstractSyntax.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/AbstractSyntax.cmo frontend/AbstractSyntax.ml # cached
+# Target: main/DTAnalysisIterator.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:main/DTAnalysisIterator.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules main/DTAnalysisIterator.ml > main/DTAnalysisIterator.ml.depends # cached
+# Target: domains/DTDomain.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:domains/DTDomain.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules domains/DTDomain.ml > domains/DTDomain.ml.depends # cached
+# Target: frontend/ItoA.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:frontend/ItoA.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules frontend/ItoA.ml > frontend/ItoA.ml.depends # cached
+# Target: frontend/ItoA.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:frontend/ItoA.cmo, file:frontend/ItoA.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/ItoA.cmo frontend/ItoA.ml # cached
+# Target: domains/Partition.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:domains/Partition.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules domains/Partition.ml > domains/Partition.ml.depends # cached
+# Target: utils/Constraints.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:utils/Constraints.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules utils/Constraints.ml > utils/Constraints.ml.depends # cached
+# Target: utils/Constraints.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:utils/Constraints.cmo, file:utils/Constraints.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I utils -I domains -I frontend -I main -o utils/Constraints.cmo utils/Constraints.ml # cached
+# Target: domains/Partition.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:domains/Partition.cmo, file:domains/Partition.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/Partition.cmo domains/Partition.ml # cached
+# Target: domains/DTDomain.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:domains/DTDomain.cmo, file:domains/DTDomain.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/DTDomain.cmo domains/DTDomain.ml # cached
+# Target: utils/InvMap.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:utils/InvMap.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules utils/InvMap.ml > utils/InvMap.ml.depends # cached
+# Target: utils/InvMap.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:utils/InvMap.cmo, file:utils/InvMap.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I utils -I domains -I frontend -I main -o utils/InvMap.cmo utils/InvMap.ml # cached
+# Target: main/Iterator.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:main/Iterator.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules main/Iterator.ml > main/Iterator.ml.depends # cached
+# Target: main/Iterator.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:main/Iterator.cmo, file:main/Iterator.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/Iterator.cmo main/Iterator.ml # cached
+# Target: main/DTAnalysisIterator.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:main/DTAnalysisIterator.cmo, file:main/DTAnalysisIterator.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/DTAnalysisIterator.cmo main/DTAnalysisIterator.ml # cached
+# Target: frontend/Lexer.mll, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:mll, file:frontend/Lexer.mll, lexer, ocaml, ocamllex, quiet }
+ocamllex.opt -q frontend/Lexer.mll # cached
+# Target: frontend/Lexer.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:frontend/Lexer.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules frontend/Lexer.ml > frontend/Lexer.ml.depends # cached
+# Target: frontend/Parser.mly.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:mly, file:frontend/Parser.mly, infer, menhir_ocamldep, ocaml, ocamldep, quiet }
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' frontend/Parser.mly > frontend/Parser.mly.depends # cached
+# Target: frontend/Parser.mly, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:ml, extension:mly, file:frontend/Parser.ml, file:frontend/Parser.mly, infer, menhir, ocaml, parser, quiet }
+menhir --ocamlc 'ocamlfind ocamlc -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils' --infer frontend/Parser.mly # cached
+# Target: frontend/Parser.mli.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:mli, file:frontend/Parser.mli, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules frontend/Parser.mli > frontend/Parser.mli.depends # cached
+# Target: frontend/Parser.cmi, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:mli, file:frontend/Parser.mli, interf, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/Parser.cmi frontend/Parser.mli # cached
+# Target: frontend/Lexer.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:frontend/Lexer.cmo, file:frontend/Lexer.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/Lexer.cmo frontend/Lexer.ml # cached
+# Target: domains/MakeDTDomain.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:domains/MakeDTDomain.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules domains/MakeDTDomain.ml > domains/MakeDTDomain.ml.depends # cached
+# Target: domains/Numerical.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:domains/Numerical.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules domains/Numerical.ml > domains/Numerical.ml.depends # cached
+# Target: domains/Numerical.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:domains/Numerical.cmo, file:domains/Numerical.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/Numerical.cmo domains/Numerical.ml # cached
+# Target: domains/MakeDTDomain.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:domains/MakeDTDomain.cmo, file:domains/MakeDTDomain.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/MakeDTDomain.cmo domains/MakeDTDomain.ml # cached
+# Target: domains/Maketuple.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:domains/Maketuple.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules domains/Maketuple.ml > domains/Maketuple.ml.depends # cached
+# Target: domains/Tuple.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:domains/Tuple.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules domains/Tuple.ml > domains/Tuple.ml.depends # cached
+# Target: domains/Tuple.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:domains/Tuple.cmo, file:domains/Tuple.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/Tuple.cmo domains/Tuple.ml # cached
+# Target: domains/Maketuple.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:domains/Maketuple.cmo, file:domains/Maketuple.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/Maketuple.cmo domains/Maketuple.ml # cached
+# Target: main/SingleAnalysisIterator.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:main/SingleAnalysisIterator.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules main/SingleAnalysisIterator.ml > main/SingleAnalysisIterator.ml.depends # cached
+# Target: main/SingleAnalysisIterator.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:main/SingleAnalysisIterator.cmo, file:main/SingleAnalysisIterator.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/SingleAnalysisIterator.cmo main/SingleAnalysisIterator.ml # cached
+# Target: main/TupleAnalysisIterator.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:main/TupleAnalysisIterator.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules main/TupleAnalysisIterator.ml > main/TupleAnalysisIterator.ml.depends # cached
+# Target: main/TupleAnalysisIterator.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:main/TupleAnalysisIterator.cmo, file:main/TupleAnalysisIterator.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/TupleAnalysisIterator.cmo main/TupleAnalysisIterator.ml # cached
+# Target: main/Main.cmo, tags: { package(apron), package(gmp), package(oUnit), package(zarith), byte, compile, extension:cmo, extension:ml, file:main/Main.cmo, file:main/Main.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/Main.cmo main/Main.ml # cached
+# Target: frontend/IntermediateSyntax.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:frontend/IntermediateSyntax.cmx, file:frontend/IntermediateSyntax.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/IntermediateSyntax.cmx frontend/IntermediateSyntax.ml # cached
+# Target: frontend/AbstractSyntax.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:frontend/AbstractSyntax.cmx, file:frontend/AbstractSyntax.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/AbstractSyntax.cmx frontend/AbstractSyntax.ml # cached
+# Target: frontend/ItoA.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:frontend/ItoA.cmx, file:frontend/ItoA.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/ItoA.cmx frontend/ItoA.ml # cached
+# Target: utils/Constraints.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:utils/Constraints.cmx, file:utils/Constraints.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I utils -I domains -I frontend -I main -o utils/Constraints.cmx utils/Constraints.ml # cached
+# Target: domains/Partition.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:domains/Partition.cmx, file:domains/Partition.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/Partition.cmx domains/Partition.ml # cached
+# Target: domains/DTDomain.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:domains/DTDomain.cmx, file:domains/DTDomain.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/DTDomain.cmx domains/DTDomain.ml # cached
+# Target: utils/InvMap.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:utils/InvMap.cmx, file:utils/InvMap.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I utils -I domains -I frontend -I main -o utils/InvMap.cmx utils/InvMap.ml # cached
+# Target: main/Iterator.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:main/Iterator.cmx, file:main/Iterator.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/Iterator.cmx main/Iterator.ml # cached
+# Target: main/DTAnalysisIterator.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:main/DTAnalysisIterator.cmx, file:main/DTAnalysisIterator.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/DTAnalysisIterator.cmx main/DTAnalysisIterator.ml # cached
+# Target: frontend/Parser.ml.depends, tags: { package(apron), package(gmp), package(oUnit), package(zarith), extension:ml, file:frontend/Parser.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package zarith -package oUnit -package gmp -package apron -modules frontend/Parser.ml > frontend/Parser.ml.depends # cached
+# Target: frontend/Parser.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:frontend/Parser.cmx, file:frontend/Parser.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/Parser.cmx frontend/Parser.ml # cached
+# Target: frontend/Lexer.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:frontend/Lexer.cmx, file:frontend/Lexer.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I frontend -I domains -I main -I utils -o frontend/Lexer.cmx frontend/Lexer.ml # cached
+# Target: domains/Numerical.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:domains/Numerical.cmx, file:domains/Numerical.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/Numerical.cmx domains/Numerical.ml # cached
+# Target: domains/MakeDTDomain.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:domains/MakeDTDomain.cmx, file:domains/MakeDTDomain.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/MakeDTDomain.cmx domains/MakeDTDomain.ml # cached
+# Target: domains/Tuple.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:domains/Tuple.cmx, file:domains/Tuple.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/Tuple.cmx domains/Tuple.ml # cached
+# Target: domains/Maketuple.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:domains/Maketuple.cmx, file:domains/Maketuple.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I domains -I frontend -I main -I utils -o domains/Maketuple.cmx domains/Maketuple.ml # cached
+# Target: main/SingleAnalysisIterator.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:main/SingleAnalysisIterator.cmx, file:main/SingleAnalysisIterator.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/SingleAnalysisIterator.cmx main/SingleAnalysisIterator.ml # cached
+# Target: main/TupleAnalysisIterator.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:main/TupleAnalysisIterator.cmx, file:main/TupleAnalysisIterator.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/TupleAnalysisIterator.cmx main/TupleAnalysisIterator.ml # cached
+# Target: main/Main.cmx, tags: { package(apron), package(gmp), package(oUnit), package(zarith), compile, extension:cmx, extension:ml, file:main/Main.cmx, file:main/Main.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -package zarith -package oUnit -package gmp -package apron -I main -I domains -I frontend -I utils -o main/Main.cmx main/Main.ml # cached
+# Target: main/Main.native, tags: { package(apron), package(gmp), package(oUnit), package(zarith), dont_link_with, extension:native, file:main/Main.native, link, native, ocaml, program, quiet }
+ocamlfind ocamlopt boxMPQ.cmxa octD.cmxa polkaMPQ.cmxa str.cmxa zarith.cmxa -linkpkg -package zarith -package oUnit -package gmp -package apron -I frontend -I utils -I domains -I main frontend/IntermediateSyntax.cmx frontend/AbstractSyntax.cmx utils/Constraints.cmx domains/Partition.cmx frontend/ItoA.cmx domains/DTDomain.cmx domains/Numerical.cmx domains/MakeDTDomain.cmx domains/Tuple.cmx domains/Maketuple.cmx frontend/Parser.cmx frontend/Lexer.cmx main/Iterator.cmx utils/InvMap.cmx main/DTAnalysisIterator.cmx main/SingleAnalysisIterator.cmx main/TupleAnalysisIterator.cmx main/Main.cmx -o main/Main.native # cached
+# Compilation successful.

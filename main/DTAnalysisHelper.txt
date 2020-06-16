@@ -1,0 +1,31 @@
+
+
+      | (x,nx)::xs ->
+	    (*C.print feats !fmt x; Format.fprintf !fmt "\n config-filter %b\n" (Lincons1.get_typ x = Lincons1.EQ); *)
+        let bx = P.inner env_feats feats [x] in
+        if (P.isLeq bcs bx)
+        then (* x is redundant *) aux t xs cs
+        else (* x is not redundant *)
+        if (P.isBot (P.meet bx bcs))
+        then (* x is conflicting *) Leaf (P.bot env_vars vars) (* This introduces a NIL leaf to the tree *)
+        else
+        if (C.isLeq nx x) || (Lincons1.get_typ x = Lincons1.EQ)
+        then (* x is normalized *)
+          (match t with
+           | Node ((c,nc),l,r) when (C.isEq c x) (* c = x *) ->
+             let l = aux l xs (c::cs) in
+			 Node((c,nc),l,Leaf (P.bot env_vars vars))
+           | Node ((c,nc),l,r) when (C.isLeq c x) (* c < x *) ->
+             let bc = P.inner env_vars vars [c] in
+             if (P.isLeq bcs bc)
+             then (* c is redundant *) aux l bs cs
+             else (* c is not redundant *)
+               (* if (B.isBot (B.meet bc bcs))
+                  then (* c is conflicting *) aux r bs cs
+                  else *)
+               let l = aux l bs (c::cs) in
+               let r = aux r bs (nc::cs) in
+			   Node((c,nc),l,r)
+           | _ ->
+             let l = aux t xs (x::cs) in
+				Node((x,nx),l,Leaf (P.bot env_vars vars)) )

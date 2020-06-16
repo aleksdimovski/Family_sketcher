@@ -1,0 +1,94 @@
+# FamilySketcher --- Program Sketcher based on Lifted Analysis 
+
+This tool is a research prototype program sketcher designed for resolving numerical sketches using lifted static analyzis based on abstract interpretation
+
+
+## Author
+
+	Aleksandar Dimovski (Sven Apel & Axel Legay)
+	
+	
+# Installation
+
+The tool requires the following applications and libraries:
+
+* OCaml 
+
+	```
+	(sudo) apt-get install ocaml-interp
+	```
+
+* Findlib
+
+	```
+	(sudo) apt-get install ocaml-findlib
+	```
+
+* Menhir: LR(1) parser generator
+
+	```
+	(sudo) apt-get install menhir
+	```
+  
+* Opam: https://opam.ocaml.org/doc/Install.html
+
+	```
+	(sudo) apt-get install opam
+	```
+  
+* OUnit
+
+	```
+	opam install ounit
+	```
+
+* APRON: numerical abstract domain library
+
+	```
+	opam install apron
+	```
+* Set the Library Path variable in ~/.bashrc open with "gedit ~/.bashrc" 
+
+	LD_LIBRARY_PATH=/home/aleks/.opam/system/share/apron/lib
+	export LD_LIBRARY_PATH
+
+
+* Zarith: arbitrary-precision integer operations
+
+	```
+	opam install zarith
+	```
+
+
+# Compiling lifted_analyzer
+
+Once all required libraries are installed, 'ocamlbuild' can be used to build lifted_analyzer with the following command:
+
+```
+eval $(opam config env)                 % It will setup environment variables, that are necessary for the toolchain to work properly
+
+ocamlbuild Main.native -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit,zarith' -I utils -I domains -I frontend -I main -libs boxMPQ,octD,polkaMPQ,str,zarith
+```
+
+# Usage
+
+The analyzer performs a forward reachability analysis of programs with #ifdef-s.
+
+The following general command-line options are recognized
+(showing their default value):
+
+	 -tree								set to perform decision tree-based lifted analysis
+	 -main main                         set the analyzer entry point (defaults to main)
+	 -domain boxes|octagons|polyhedra   set the abstract domain (defaults to boxes)
+	 -joinfwd 2                         set the widening delay in forward analysis
+
+
+# Examples from the paper are in mytests folder:
+
+1. LOOP example
+
+enter the folder that contains the tool, and write
+
+$ ./Main.native -tree -domain polyhedra mytests/loop.c
+
+
