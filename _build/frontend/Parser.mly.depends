@@ -1,2 +1,0 @@
-frontend/Parser.ml: IntermediateSyntax Lexing
-frontend/Parser.mli: IntermediateSyntax Lexing
