@@ -1,0 +1,8 @@
+//@Description Toy benchmark that explores the use of generators.
+
+
+harness void sketch(int x) {
+	assume x>0;
+	int z = ??*x+??;
+    assert (z>=2*x) && (z<=2*x+2);
+}

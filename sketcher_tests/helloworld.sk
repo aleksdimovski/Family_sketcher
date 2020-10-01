@@ -1,0 +1,9 @@
+//@Description Toy benchmark.
+
+
+harness void sketch(int x ) {
+   assume x>=0;
+   int y = ?? * x; 
+   assert (y <= x + x);
+   
+}

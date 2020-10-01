@@ -1,0 +1,39 @@
+
+** Conflict (shift/reduce) in state 178.
+** Token involved: TOK_ELSE
+** This state is reached from file after reading:
+
+TOK_VOID annotate(TOK_id) TOK_LPAREN TOK_VOID TOK_RPAREN TOK_LCURLY TOK_IF TOK_LPAREN annotate(exp) TOK_RPAREN TOK_IF TOK_LPAREN annotate(exp) TOK_RPAREN annotate(stmt) 
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+file 
+annotate(list(decl)) TOK_EOF 
+list(decl) 
+decl list(decl) 
+annotate(function_decl) 
+function_decl 
+TOK_VOID annotate(TOK_id) TOK_LPAREN TOK_VOID TOK_RPAREN block_stmt 
+                                                         TOK_LCURLY list(annotate(stmt)) TOK_RCURLY 
+                                                                    annotate(stmt) list(annotate(stmt)) 
+                                                                    stmt 
+                                                                    selection_stmt 
+                                                                    (?)
+
+** In state 178, looking ahead at TOK_ELSE, reducing production
+** selection_stmt -> TOK_IF TOK_LPAREN annotate(exp) TOK_RPAREN annotate(stmt) 
+** is permitted because of the following sub-derivation:
+
+TOK_IF TOK_LPAREN annotate(exp) TOK_RPAREN annotate(stmt) TOK_ELSE annotate(stmt) // lookahead token appears
+                                           stmt // lookahead token is inherited
+                                           selection_stmt // lookahead token is inherited
+                                           TOK_IF TOK_LPAREN annotate(exp) TOK_RPAREN annotate(stmt) . 
+
+** In state 178, looking ahead at TOK_ELSE, shifting is permitted
+** because of the following sub-derivation:
+
+TOK_IF TOK_LPAREN annotate(exp) TOK_RPAREN annotate(stmt) 
+                                           stmt 
+                                           selection_stmt 
+                                           TOK_IF TOK_LPAREN annotate(exp) TOK_RPAREN annotate(stmt) . TOK_ELSE annotate(stmt) 
