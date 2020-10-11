@@ -1,4 +1,6 @@
-# FamilySketcher --- Program Sketcher based on Lifted Analysis 
+##################################################################
+## FamilySketcher --- Program Sketcher based on Lifted Analysis ## 
+##################################################################
 
 This tool is a research prototype program sketcher designed for resolving numerical sketches using lifted static analyzis based on abstract interpretation
 
@@ -35,6 +37,11 @@ The tool requires the following applications and libraries:
 	```
 	(sudo) apt-get install opam
 	```
+
+* Initialize OPAM state
+	```
+	opam init
+	```	
   
 * OUnit
 
@@ -48,10 +55,11 @@ The tool requires the following applications and libraries:
 	opam install apron
 	```
 * Set the Library Path variable in ~/.bashrc open with "gedit ~/.bashrc" 
+  First find the folder where the libraries of apron are installed, e.g. "/home/.opam/system/share/apron/lib"
+  You can navigate the folder and check using command "pwd" for the absolute path, then set the Library Path
 
-	LD_LIBRARY_PATH=/home/aleks/.opam/system/share/apron/lib
+	LD_LIBRARY_PATH=/home/.opam/system/share/apron/lib
 	export LD_LIBRARY_PATH
-
 
 * Zarith: arbitrary-precision integer operations
 
@@ -60,9 +68,9 @@ The tool requires the following applications and libraries:
 	```
 
 
-# Compiling lifted_analyzer
+# Compiling FamilySketcher
 
-Once all required libraries are installed, 'ocamlbuild' can be used to build lifted_analyzer with the following command:
+Once all required libraries are installed, 'ocamlbuild' can be used to build program sketcher with the following two commands:
 
 ```
 eval $(opam config env)                 % It will setup environment variables, that are necessary for the toolchain to work properly
@@ -72,23 +80,189 @@ ocamlbuild Main.native -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit,zarith'
 
 # Usage
 
-The analyzer performs a forward reachability analysis of programs with #ifdef-s.
+The program sketcher performs a forward reachability analysis of program families and resolves the holes (features) so that 
+the final assertions are valid. 
 
 The following general command-line options are recognized
 (showing their default value):
 
 	 -tree								set to perform decision tree-based lifted analysis
+	 -single 							set to perform brute force enumeration approach using single analysis for each variant
 	 -main main                         set the analyzer entry point (defaults to main)
 	 -domain boxes|octagons|polyhedra   set the abstract domain (defaults to boxes)
 	 -joinfwd 2                         set the widening delay in forward analysis
 
 
-# Examples from the paper are in mytests folder:
+# Examples from the paper are in tests folder:
 
-1. LOOP example
-
+1. HelloWorld example
 enter the folder that contains the tool, and write
 
-$ ./Main.native -tree -domain polyhedra mytests/loop.c
+$ ./Main.native -tree -domain polyhedra tests/helloworld.c 
+
+2. Loop and Loop' examples 
+Loop example with 5, 8, and 16 bits sizes of holes is given as loop1-5.c, loop1-8.c, and loop1-16.c 
+$ ./Main.native -tree -domain polyhedra tests/loop1-5.c
+$ ./Main.native -tree -domain polyhedra tests/loop1-8.c
+$ ./Main.native -tree -domain polyhedra tests/loop1-16.c
+
+Similarly, Loop' example with 5, 8, and 16 bits sizes of holes is given as loop2-5.c, loop2-8.c, and loop2-16.c 
+$ ./Main.native -tree -domain polyhedra tests/loop2-5.c
+$ ./Main.native -tree -domain polyhedra tests/loop2-8.c
+$ ./Main.native -tree -domain polyhedra tests/loop2-16.c
+
+3. LinExp example 
+LinExp example with 5 and 8 bits sizes of holes is given as linexp-5.c, and linexp-8.c (linexp-16 does not terminate)
+$ ./Main.native -tree -domain polyhedra tests/linexp-5.c
+$ ./Main.native -tree -domain polyhedra tests/linexp-8.c
+
+4. Conditional example
+Conditional example with 5, 8, and 16 bits sizes of holes is given as conditional-5.c, conditional-8.c, and conditional-16.c
+$ ./Main.native -tree -domain polyhedra tests/conditional-5.c
+$ ./Main.native -tree -domain polyhedra tests/conditional-8.c
+$ ./Main.native -tree -domain polyhedra tests/conditional-16.c 
+
+5. LoopCond and LoopCond' examples 
+LoopCond example with 5, 8, and 16 bits sizes of holes is given as loopcond1-5.c, loopcond1-8.c, and loopcond1-16.c 
+$ ./Main.native -tree -domain polyhedra tests/loopcond1-5.c
+$ ./Main.native -tree -domain polyhedra tests/loopcond1-8.c
+$ ./Main.native -tree -domain polyhedra tests/loopcond1-16.c
+
+Similarly, LoopCond' example with 5, 8, and 16 bits sizes of holes is given as loopcond2-5.c, loopcond2-8.c, and loopcond2-16.c 
+$ ./Main.native -tree -domain polyhedra tests/loopcond2-5.c
+$ ./Main.native -tree -domain polyhedra tests/loopcond2-8.c
+$ ./Main.native -tree -domain polyhedra tests/loopcond2-16.c
+
+6. NestedLoop example
+NestedLoop example with 5, 8, and 16 bits sizes of holes is given as nestedloop-5.c, nestedloop-8.c, and nestedloop-16.c 
+$ ./Main.native -tree -domain polyhedra tests/nestedloop-5.c
+$ ./Main.native -tree -domain polyhedra tests/nestedloop-8.c
+$ ./Main.native -tree -domain polyhedra tests/nestedloop-16.c
 
 
+
+################################################################################
+##Brute Force approach --- Single-Program Analysis of all variants one by one ##
+################################################################################
+
+We stay in the same folder as for FamilySketcher, we run the same example files, such that 
+we use command-line option -single instead of -tree
+
+# Examples from the paper are in tests folder:
+
+1. HelloWorld example
+enter the folder that contains the tool, and write
+
+$ ./Main.native -single -domain polyhedra tests/helloworld.c 
+
+2. Loop and Loop' examples 
+Loop example with 5, and 8 bits sizes of holes is given as loop1-5.c, and loop1-8.c (loop1-16.c does not terminate)
+$ ./Main.native -single -domain polyhedra tests/loop1-5.c
+$ ./Main.native -single -domain polyhedra tests/loop1-8.c
+
+Similarly, Loop' example with 5, and 8 bits sizes of holes is given as loop2-5.c, and loop2-8.c (loop2-16.c does not terminate) 
+$ ./Main.native -single -domain polyhedra tests/loop2-5.c
+$ ./Main.native -single -domain polyhedra tests/loop2-8.c
+
+3. LinExp example 
+LinExp example with 5 and 8 bits sizes of holes is given as linexp-5.c, and linexp-8.c (linexp-16 does not terminate)
+$ ./Main.native -single -domain polyhedra tests/linexp-5.c
+$ ./Main.native -single -domain polyhedra tests/linexp-8.c
+
+4. Conditional example
+Conditional example with 5, 8, and 16 bits sizes of holes is given as conditional-5.c, conditional-8.c, and conditional-16.c
+$ ./Main.native -single -domain polyhedra tests/conditional-5.c
+$ ./Main.native -single -domain polyhedra tests/conditional-8.c
+$ ./Main.native -single -domain polyhedra tests/conditional-16.c 
+
+5. LoopCond and LoopCond' examples 
+LoopCond example with 5, 8, and 16 bits sizes of holes is given as loopcond1-5.c, loopcond1-8.c, and loopcond1-16.c 
+$ ./Main.native -single -domain polyhedra tests/loopcond1-5.c
+$ ./Main.native -single -domain polyhedra tests/loopcond1-8.c
+$ ./Main.native -single -domain polyhedra tests/loopcond1-16.c
+
+Similarly, LoopCond' example with 5, and 8 bits sizes of holes is given as loopcond2-5.c, and loopcond2-8.c (loopcond2-16.c does not terminate)
+$ ./Main.native -single -domain polyhedra tests/loopcond2-5.c
+$ ./Main.native -single -domain polyhedra tests/loopcond2-8.c
+
+6. NestedLoop example
+NestedLoop example with 5 bits sizes of holes is given as nestedloop-5.c (nestedloop-8.c and nestedloop-16.c do not terminate)
+$ ./Main.native -single -domain polyhedra tests/nestedloop-5.c
+
+
+
+
+###########################################################################################
+## Sketch 1.7.6 --- Program Sketcher available from https://people.csail.mit.edu/asolar/ ##
+###########################################################################################
+
+Download and unzip the tool from https://people.csail.mit.edu/asolar/
+
+Follow the instructions in Sketch 1.7.6 README 
+
+# the following tools need to be installed: bash, g++, bison, flex
+
+# under the sketch-1.7.6 directory, execute:
+
+cd sketch-backend
+chmod +x ./configure
+./configure
+make
+cd ..
+
+# Testing the sketch
+
+cd sketch-frontend
+chmod +x ./sketch
+./sketch test/sk/seq/miniTest1.sk 
+
+# copy the folder skecher_tests as sub-folder of sketch-frontend
+then from sketch-frontend directory you can test all sketches
+
+# Examples from the paper are in skecher_tests folder: 
+
+1. HelloWorld example
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 skecher_tests/helloworld.sk  
+
+option --bnd-cbits determines the size in bits of control holes [default is 5]
+option --bnd-inbits determines the size in bits of inputs [default is 5]
+option --bnd-unroll-amnt determines the unroll amount for loops [default is 8]
+
+2. Loop and Loop' examples 
+Loop example is given as loop1.sk 
+./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 skecher_tests/loop1.sk
+./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 8 skecher_tests/loop1.sk
+./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 8 skecher_tests/loop1.sk
+
+Similarly, Loop' example is given as loop2.sk
+./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 skecher_tests/loop2.sk [FAILS]
+./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 9 skecher_tests/loop2.sk
+./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 9 skecher_tests/loop2.sk
+./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 9 skecher_tests/loop2.sk
+
+3. LinExp example 
+LinExp example is given as linexp.sk
+./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 skecher_tests/linexp.sk
+./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 8 skecher_tests/linexp.sk
+./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 8 skecher_tests/linexp.sk
+
+4. Conditional example
+Conditional example is given as conditional.sk
+./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 skecher_tests/conditional.sk
+./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 8 skecher_tests/conditional.sk
+./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 8 skecher_tests/conditional.sk
+
+5. LoopCond and LoopCond' examples 
+LoopCond example is given as loopcond1.sk 
+./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 32 skecher_tests/loopcond1.sk
+./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 256 skecher_tests/loopcond1.sk
+./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 256 skecher_tests/loopcond1.sk [FAILS]
+
+Similarly, LoopCond' example is given as loopcond2.sk
+./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 32 skecher_tests/loopcond2.sk
+./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 256 skecher_tests/loopcond2.sk
+./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 256 skecher_tests/loopcond1.sk [FAILS]
+
+6. NestedLoop example
+NestedLoop example is given as nestedloop.sk
+./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 32 skecher_tests/nestedloop.sk [FAILS]
