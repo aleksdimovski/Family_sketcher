@@ -1,0 +1,200 @@
+This documents shows all performance results reported in the paper 
+¨Program Sketching using Lifted Analysis for Numerical Program Families¨.
+The reported results are obtained on the machine 
+[Intel Core TM i7-8700 CPU@3.20GHz x 12, 8 GB Memory, 64-bit Ubuntu 18.04.5 LTS]
+
+We compare three tools:
+- FamilySketcher that uses the decision tree-based lifted analysis and the polyhedra domain from the APRON library.
+- Program sketching tool Sketch version 1.7.6 that uses SAT-based inductive synthesis.
+- The Brute Force enumeration approach that analyzes all variants, one by one, using a single-program analysis based on the polyhedra domain from the APRON library.
+
+
+##################################################################
+## FamilySketcher --- Program Sketcher based on Lifted Analysis ## 
+##################################################################
+
+FamilySketcher is a research prototype program sketcher designed for 
+resolving numerical sketches using lifted static analysis based on abstract interpretation.
+
+
+## Author
+
+	Aleksandar Dimovski (Sven Apel & Axel Legay)
+	
+	
+
+# Examples 
+```
+cd family_sketcher
+```
+All benchmarks from the paper are in ¨tests¨ subfolder of ¨family_sketcher¨ folder. 
+Enter the folder that contains the tool, and write the following commands. 
+Note that after commands in square brackets we write the reported times in seconds on our machine 
+[Intel Core TM i7-8700 CPU@3.20GHz x 12, 8 GB Memory, 64-bit Ubuntu 18.04.5 LTS]
+
+1. HelloWorld example
+$ ./Main.native -tree -domain polyhedra tests/helloworld.c 
+
+2. Loop and Loop' examples 
+Loop example with 5, 8, and 16 bits sizes of holes is given as loop1-5.c, loop1-8.c, and loop1-16.c 
+$ ./Main.native -tree -domain polyhedra tests/loop1-5.c   [0.007]
+$ ./Main.native -tree -domain polyhedra tests/loop1-8.c   [0.007]
+$ ./Main.native -tree -domain polyhedra tests/loop1-16.c   [0.007]
+
+Similarly, Loop' example with 5, 8, and 16 bits sizes of holes is given as loop2-5.c, loop2-8.c, and loop2-16.c 
+$ ./Main.native -tree -domain polyhedra tests/loop2-5.c   [0.007]
+$ ./Main.native -tree -domain polyhedra tests/loop2-8.c   [0.007]
+$ ./Main.native -tree -domain polyhedra tests/loop2-16.c   [0.007]
+
+3. LinExp example 
+LinExp example with 5 and 8 bits sizes of holes is given as linexp-5.c, and linexp-8.c (linexp-16 does not terminate)
+$ ./Main.native -tree -domain polyhedra tests/linexp-5.c   [0.165]
+$ ./Main.native -tree -domain polyhedra tests/linexp-8.c   [26.99] 
+$ ./Main.native -tree -domain polyhedra tests/linexp-16.c   [FAILS] 
+
+4. Conditional example
+Conditional example with 5, 8, and 16 bits sizes of holes is given as conditional-5.c, conditional-8.c, and conditional-16.c
+$ ./Main.native -tree -domain polyhedra tests/conditional-5.c   [0.0025]
+$ ./Main.native -tree -domain polyhedra tests/conditional-8.c   [0.0027] 
+$ ./Main.native -tree -domain polyhedra tests/conditional-16.c   [0.004] 
+
+5. LoopCond and LoopCond' examples 
+LoopCond example with 5, 8, and 16 bits sizes of holes is given as loopcond1-5.c, loopcond1-8.c, and loopcond1-16.c 
+$ ./Main.native -tree -domain polyhedra tests/loopcond1-5.c   [0.011] 
+$ ./Main.native -tree -domain polyhedra tests/loopcond1-8.c   [0.013] 
+$ ./Main.native -tree -domain polyhedra tests/loopcond1-16.c   [0.013] 
+
+Similarly, LoopCond' example with 5, 8, and 16 bits sizes of holes is given as loopcond2-5.c, loopcond2-8.c, and loopcond2-16.c 
+$ ./Main.native -tree -domain polyhedra tests/loopcond2-5.c   [0.022] 
+$ ./Main.native -tree -domain polyhedra tests/loopcond2-8.c   [0.022]
+$ ./Main.native -tree -domain polyhedra tests/loopcond2-16.c   [0.022]
+
+6. NestedLoop example
+NestedLoop example with 5, 8, and 16 bits sizes of holes is given as nestedloop-5.c, nestedloop-8.c, and nestedloop-16.c 
+$ ./Main.native -tree -domain polyhedra tests/nestedloop-5.c   [0.053]
+$ ./Main.native -tree -domain polyhedra tests/nestedloop-8.c   [0.054]
+$ ./Main.native -tree -domain polyhedra tests/nestedloop-16.c   [0.054]
+
+
+
+################################################################################
+##Brute Force approach --- Single-Program Analysis of all variants one by one ##
+################################################################################
+
+We stay in the same folder ¨family_sketcher¨ as for FamilySketcher, we run the same example files, but now  
+we use command-line option ¨-single¨ instead of ¨-tree¨. 
+
+# Examples 
+All benchmarks from the paper are in ¨tests¨ subfolder of ¨family_sketcher¨ folder.
+Enter the folder that contains the tool, and write the following commands. 
+Note that after commands in square brackets we write the reported times in seconds on our machine 
+[Intel Core TM i7-8700 CPU@3.20GHz x 12, 8 GB Memory, 64-bit Ubuntu 18.04.5 LTS]
+
+1. HelloWorld example
+$ ./Main.native -single -domain polyhedra tests/helloworld.c 
+
+2. Loop and Loop' examples 
+Loop example with 5, and 8 bits sizes of holes is given as loop1-5.c, and loop1-8.c (loop1-16.c does not terminate)
+$ ./Main.native -single -domain polyhedra tests/loop1-5.c   [0.628]
+$ ./Main.native -single -domain polyhedra tests/loop1-8.c   [67.79] 
+$ ./Main.native -single -domain polyhedra tests/loop1-16.c   [FAILS] 
+
+Similarly, Loop' example with 5, and 8 bits sizes of holes is given as loop2-5.c, and loop2-8.c (loop2-16.c does not terminate) 
+$ ./Main.native -single -domain polyhedra tests/loop2-5.c   [0.628]
+$ ./Main.native -single -domain polyhedra tests/loop2-8.c   [60.59]
+$ ./Main.native -single -domain polyhedra tests/loop2-16.c   [FAILS] 
+
+3. LinExp example 
+LinExp example with 5 and 8 bits sizes of holes is given as linexp-5.c, and linexp-8.c (linexp-16 does not terminate)
+$ ./Main.native -single -domain polyhedra tests/linexp-5.c   [0.479]
+$ ./Main.native -single -domain polyhedra tests/linexp-8.c   [36.80]
+$ ./Main.native -single -domain polyhedra tests/linexp-16.c   [FAILS]
+
+4. Conditional example
+Conditional example with 5, 8, and 16 bits sizes of holes is given as conditional-5.c, conditional-8.c, and conditional-16.c
+$ ./Main.native -single -domain polyhedra tests/conditional-5.c   [0.019]
+$ ./Main.native -single -domain polyhedra tests/conditional-8.c   [0.155]
+$ ./Main.native -single -domain polyhedra tests/conditional-16.c   [54.68]  
+
+5. LoopCond and LoopCond' examples 
+LoopCond example with 5, 8, and 16 bits sizes of holes is given as loopcond1-5.c, loopcond1-8.c, and loopcond1-16.c 
+$ ./Main.native -single -domain polyhedra tests/loopcond1-5.c   [0.065]
+$ ./Main.native -single -domain polyhedra tests/loopcond1-8.c   [0.404]
+$ ./Main.native -single -domain polyhedra tests/loopcond1-16.c   [191.43] 
+
+Similarly, LoopCond' example with 5, and 8 bits sizes of holes is given as loopcond2-5.c, and loopcond2-8.c (loopcond2-16.c does not terminate)
+$ ./Main.native -single -domain polyhedra tests/loopcond2-5.c   [1.615]
+$ ./Main.native -single -domain polyhedra tests/loopcond2-8.c   [199.95] 
+$ ./Main.native -single -domain polyhedra tests/loopcond2-16.c   [FAILS] 
+
+6. NestedLoop example
+NestedLoop example with 5 bits sizes of holes is given as nestedloop-5.c (nestedloop-8.c and nestedloop-16.c do not terminate)
+$ ./Main.native -single -domain polyhedra tests/nestedloop-5.c   [4.186] 
+$ ./Main.native -single -domain polyhedra tests/nestedloop-8.c   [FAILS] 
+$ ./Main.native -single -domain polyhedra tests/nestedloop-16.c   [FAILS] 
+
+
+
+###########################################################################################
+## Sketch 1.7.6 --- Program Sketcher available from https://people.csail.mit.edu/asolar/ ##
+###########################################################################################
+
+```
+cd sketch-1.7.6
+cd sketch-frontend
+```
+
+# from sketch-frontend directory you can test all sketches. 
+Note that we use the following ¨./sketch¨ options
+
+option --bnd-cbits determines the size in bits of control holes [default is 5]
+option --bnd-inbits determines the size in bits of inputs [default is 5]
+option --bnd-unroll-amnt determines the unroll amount for loops [default is 8]
+
+# Examples from the paper are in skecher_tests folder, copy them in ¨tests¨ subfolder of sketch-frontend: 
+Note that after commands in square brackets we write the reported times in seconds on our machine 
+[Intel Core TM i7-8700 CPU@3.20GHz x 12, 8 GB Memory, 64-bit Ubuntu 18.04.5 LTS]
+
+1. HelloWorld example
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 tests/helloworld.sk  
+
+2. Loop and Loop' examples 
+Loop example is given as loop1.sk 
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 tests/loop1.sk   [0.215]
+$ ./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 8 tests/loop1.sk   [0.218] 
+$ ./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 8 tests/loop1.sk   [33.740]
+
+Similarly, Loop' example is given as loop2.sk
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 tests/loop2.sk [FAILS]
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 9 tests/loop2.sk   [0.205]
+$ ./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 9 tests/loop2.sk   [0.206] 
+$ ./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 9 tests/loop2.sk   [2.292] 
+
+3. LinExp example 
+LinExp example is given as linexp.sk
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 tests/linexp.sk   [0.222]
+$ ./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 8 tests/linexp.sk   [0.238]
+$ ./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 8 tests/linexp.sk   [FAILS]
+
+4. Conditional example
+Conditional example is given as conditional.sk
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 tests/conditional.sk   [0.210] 
+$ ./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 8 tests/conditional.sk   [0.210] 
+$ ./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 8 tests/conditional.sk   [3.856] 
+
+5. LoopCond and LoopCond' examples 
+LoopCond example is given as loopcond1.sk 
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 32 tests/loopcond1.sk   [0.225]
+$ ./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 256 tests/loopcond1.sk   [0.262] 
+$ ./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 256 tests/loopcond1.sk [FAILS]
+
+Similarly, LoopCond' example is given as loopcond2.sk
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 32 tests/loopcond2.sk   [0.221]
+$ ./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 256 tests/loopcond2.sk   [0.267] 
+$ ./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 256 tests/loopcond1.sk [FAILS]
+
+6. NestedLoop example
+NestedLoop example is given as nestedloop.sk
+$ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 32 tests/nestedloop.sk [FAILS]
+$ ./sketch --bnd-cbits 8 --bnd-inbits 8 --bnd-unroll-amnt 32 tests/nestedloop.sk [FAILS]
+$ ./sketch --bnd-cbits 16 --bnd-inbits 16 --bnd-unroll-amnt 32 tests/nestedloop.sk [FAILS]

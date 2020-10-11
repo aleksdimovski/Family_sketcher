@@ -219,7 +219,7 @@ chmod +x ./sketch
 # copy the folder skecher_tests as sub-folder of sketch-frontend
 then from sketch-frontend directory you can test all sketches
 
-# Examples from the paper are in skecher_tests folder: 
+# Examples from the paper are in skecher_tests folder, copy them to sketch-frontend directory: 
 
 1. HelloWorld example
 $ ./sketch --bnd-cbits 5 --bnd-inbits 5 --bnd-unroll-amnt 8 skecher_tests/helloworld.sk  
